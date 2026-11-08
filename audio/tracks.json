@@ -59,11 +59,19 @@
    "scene": "Союз и Сила"
   },
   {
+   "file": "07b-romanticheskij-haos-oksana.mp3",
+   "title": "Романтический хаос (Оксана)",
+   "artist": "Luis Fader",
+   "chapters": [
+    "10.md"
+   ],
+   "scene": "Игры власти и крови"
+  },
+  {
    "file": "07-romanticheskij-haos.mp3",
    "title": "Романтический хаос",
    "artist": "Luis Fader",
    "chapters": [
-    "10.md",
     "11.md"
    ],
    "scene": "Игры власти и крови"

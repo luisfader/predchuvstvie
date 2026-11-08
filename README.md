@@ -14,7 +14,7 @@
 
 ```json
 {"tracks":[
-  {"file":"01.mp3","title":"Название","artist":"Luis Fader","chapters":["04.md","07.md"]}
+  {"file":"01-v-pustyne.mp3","title":"В пустыне","artist":"Luis Fader","chapters":["01.md"]}
 ]}
 ```
 

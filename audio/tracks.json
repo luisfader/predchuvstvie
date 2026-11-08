@@ -1,3 +1,118 @@
 {
- "tracks": []
+ "tracks": [
+  {
+   "file": "01-v-pustyne.mp3",
+   "title": "В пустыне",
+   "artist": "Luis Fader",
+   "chapters": [
+    "01.md"
+   ],
+   "scene": "Неожиданные гости"
+  },
+  {
+   "file": "02-prostye-smertnye.mp3",
+   "title": "Простые смертные",
+   "artist": "Luis Fader",
+   "chapters": [
+    "02.md"
+   ],
+   "scene": "Стальные ангелы и бумажные перемирия"
+  },
+  {
+   "file": "03-my-vernyomsya.mp3",
+   "title": "Мы вернёмся",
+   "artist": "Luis Fader",
+   "chapters": [
+    "03.md",
+    "09.md"
+   ],
+   "scene": "Возвращение"
+  },
+  {
+   "file": "04-obeshchanie-lyubvi.mp3",
+   "title": "Обещание любви (Вечерняя магия)",
+   "artist": "Luis Fader",
+   "chapters": [
+    "04.md",
+    "07.md"
+   ],
+   "scene": "Бункер забытых писем"
+  },
+  {
+   "file": "05-oblaka-na-gorizonte.mp3",
+   "title": "Облака на горизонте",
+   "artist": "Luis Fader",
+   "chapters": [
+    "05.md",
+    "08.md"
+   ],
+   "scene": "Ультиматум с небес"
+  },
+  {
+   "file": "06-spravedlivye.mp3",
+   "title": "Справедливые",
+   "artist": "Luis Fader",
+   "chapters": [
+    "06.md",
+    "15.md"
+   ],
+   "scene": "Союз и Сила"
+  },
+  {
+   "file": "07-romanticheskij-haos.mp3",
+   "title": "Романтический хаос",
+   "artist": "Luis Fader",
+   "chapters": [
+    "10.md",
+    "11.md"
+   ],
+   "scene": "Игры власти и крови"
+  },
+  {
+   "file": "08-divino-encanto.mp3",
+   "title": "Divino encanto",
+   "artist": "Luis Fader",
+   "chapters": [
+    "12.md",
+    "13.md"
+   ],
+   "scene": "Лучи страсти"
+  },
+  {
+   "file": "09-almas-rebeldes.mp3",
+   "title": "Almas rebeldes",
+   "artist": "Luis Fader",
+   "chapters": [
+    "14.md",
+    "16.md",
+    "17.md",
+    "18.md",
+    "19.md"
+   ],
+   "scene": "Мощные удары"
+  },
+  {
+   "file": "10-motivacion-38.mp3",
+   "title": "Motivación 38",
+   "artist": "Luis Fader",
+   "chapters": [
+    "20.md",
+    "21.md",
+    "22.md",
+    "23.md"
+   ],
+   "scene": "Голос скрипки и рёв стали"
+  },
+  {
+   "file": "11-empezar-de-nuevo.mp3",
+   "title": "Empezar de nuevo",
+   "artist": "Luis Fader",
+   "chapters": [
+    "24.md",
+    "25.md",
+    "26.md"
+   ],
+   "scene": "Последний Совет"
+  }
+ ]
 }

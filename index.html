@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Предчувствие 2.2</title>
+<meta name="description" content="Роман Роберта Фадера с собственным саундтреком">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141210; --panel:#1d1915; --line:#3a2f25; --text:#e9dfd0; --muted:#a8998a;
+  --accent:#d9893b; --accent2:#4f8a8b; --glow:rgba(217,137,59,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg) radial-gradient(ellipse at 20% -10%,#2b2017 0,transparent 60%) fixed;color:var(--text);
+  font:18px/1.75 "PT Serif",Georgia,serif;padding-bottom:96px}
+a{color:var(--accent)}
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:rgba(20,18,16,.92);backdrop-filter:blur(6px);z-index:5}
+header h1{font:700 22px/1 "Cormorant Garamond",serif;margin:0;letter-spacing:.04em;cursor:pointer}
+header .sp{flex:1}
+button{font:inherit;font-size:15px;background:var(--panel);color:var(--text);border:1px solid var(--line);
+  border-radius:8px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+main{max-width:720px;margin:0 auto;padding:24px 16px}
+.hero{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+.hero img{width:100%;border-radius:10px;box-shadow:0 10px 40px #000a}
+.hero h2{font:700 40px/1.1 "Cormorant Garamond",serif;margin:0 0 6px}
+.meta{color:var(--muted);font-size:15px}
+.desc{white-space:pre-line}
+ol.toc{list-style:none;padding:0;margin:28px 0 0;counter-reset:c}
+ol.toc li{counter-increment:c;border-top:1px solid var(--line)}
+ol.toc a{display:flex;gap:14px;padding:10px 4px;text-decoration:none;color:var(--text)}
+ol.toc a:before{content:counter(c,decimal-leading-zero);color:var(--accent);font-variant-numeric:tabular-nums;min-width:2ch}
+ol.toc a:hover{background:var(--glow)}
+ol.toc .note{margin-left:auto;color:var(--accent2);font-size:14px}
+article h2.ch{font:700 34px/1.15 "Cormorant Garamond",serif;margin:8px 0 24px;text-align:center}
+article .num{display:block;text-align:center;color:var(--accent);letter-spacing:.3em;font-size:13px}
+article img{display:block;max-width:100%;margin:28px auto;border-radius:10px;box-shadow:0 12px 40px #000b}
+article em{color:#f0d9b5}
+article hr{border:0;text-align:center;margin:28px 0}
+article hr:after{content:"✦ ✦ ✦";color:var(--accent)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:40px 0 0}
+.player{position:fixed;left:0;right:0;bottom:0;z-index:6;background:rgba(29,25,21,.97);border-top:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;padding:10px 16px}
+.player .t{flex:1;min-width:0;font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .t b{color:var(--text);font-weight:700}
+.player audio{display:none}
+.player.empty .ctl{display:none}
+@media (max-width:600px){
+  body{font-size:17px}
+  .hero{grid-template-columns:1fr}
+  .hero img{max-width:220px;margin:0 auto}
+  .hero h2{font-size:32px;text-align:center}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1 onclick="location.hash=''">Предчувствие 2.2</h1>
+  <span class="sp"></span>
+  <button id="tocBtn" onclick="location.hash=''">Оглавление</button>
+</header>
+<main id="app"></main>
+<div class="player empty" id="player">
+  <span class="t" id="ptitle">Саундтрек скоро появится</span>
+  <button class="ctl" id="prevT" aria-label="Предыдущий трек">⏮</button>
+  <button class="ctl" id="play" aria-label="Играть">▶</button>
+  <button class="ctl" id="nextT" aria-label="Следующий трек">⏭</button>
+  <audio id="audio" preload="none"></audio>
+</div>
+<script>
+const app=document.getElementById('app');
+let book,tracks=[],cur=-1;
+const pad=n=>String(n).padStart(2,'0');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function inline(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')}
+function mdToHtml(md){
+  return md.replace(/\r/g,'').split(/\n\s*\n/).map(b=>{b=b.trim(); if(!b) return '';
+    let m;
+    if(/^(\*\s*){3,}$|^-{3,}$/.test(b)) return '<hr>';
+    if(m=b.match(/^!\[([^\]]*)\]\(([^)]+)\)$/)) return `<img src="${esc(m[2])}" alt="${esc(m[1])}">`;
+    if(m=b.match(/^(#{1,4})\s+(.*)$/)) return `<h3>${inline(m[2])}</h3>`;
+    return '<p>'+b.split('\n').map(inline).join('<br>')+'</p>';
+  }).join('\n');
+}
+async function init(){
+  book=await (await fetch('book.json')).json();
+  try{tracks=(await (await fetch('audio/tracks.json')).json()).tracks||[]}catch(e){tracks=[]}
+  setupPlayer(); route(); addEventListener('hashchange',route);
+}
+function trackFor(file){return tracks.findIndex(t=>(t.chapters||[]).includes(file))}
+
+function home(){
+  document.title=book.title;
+  app.innerHTML=`<section class="hero"><img src="${book.cover}" alt="Обложка">
+    <div><h2>${esc(book.title)}</h2>
+    <div class="meta">${esc(book.author)} · ${esc(book.genre)}${book.rating?' · '+book.rating:''}</div>
+    <p class="desc">${esc(book.description)}</p>
+    <button onclick="location.hash='#/'+book.chapters[0].file.replace('.md','')">Начать читать</button></div></section>
+    <ol class="toc">${book.chapters.map(c=>{const t=trackFor(c.file);
+      return `<li><a href="#/${c.file.replace('.md','')}"><span>${esc(c.title)}</span>${t>=0?`<span class="note">♪ ${esc(tracks[t].title)}</span>`:''}</a></li>`}).join('')}</ol>`;
+  scrollTo(0,0);
+}
+async function chapter(id){
+  const i=book.chapters.findIndex(c=>c.file===id+'.md'); if(i<0) return home();
+  const c=book.chapters[i];
+  const md=await (await fetch('chapters/'+c.file)).text();
+  document.title=c.title+' — '+book.title;
+  const prev=book.chapters[i-1],next=book.chapters[i+1];
+  app.innerHTML=`<article><span class="num">ГЛАВА ${i+1}</span><h2 class="ch">${esc(c.title)}</h2>${mdToHtml(md)}</article>
+   <div class="nav">${prev?`<button onclick="location.hash='#/${prev.file.replace('.md','')}'">← ${esc(prev.title)}</button>`:'<span></span>'}
+   ${next?`<button onclick="location.hash='#/${next.file.replace('.md','')}'">${esc(next.title)} →</button>`:'<button onclick="location.hash=\'\'">Оглавление</button>'}</div>`;
+  app.querySelectorAll('article img').forEach(im=>im.loading='lazy');
+  scrollTo(0,0);
+  try{localStorage.setItem('pred-last',id)}catch(e){}
+  const t=trackFor(c.file); if(t>=0 && t!==cur) load(t,!audio.paused);
+}
+function route(){const m=location.hash.match(/^#\/(\d+)/); m?chapter(m[1]):home()}
+
+const audio=document.getElementById('audio'),pl=document.getElementById('player'),
+      pt=document.getElementById('ptitle'),play=document.getElementById('play');
+function setupPlayer(){
+  if(!tracks.length) return;
+  pl.classList.remove('empty'); load(0,false);
+  play.onclick=()=>audio.paused?audio.play():audio.pause();
+  document.getElementById('nextT').onclick=()=>load((cur+1)%tracks.length,true);
+  document.getElementById('prevT').onclick=()=>load((cur-1+tracks.length)%tracks.length,true);
+  audio.onplay=()=>play.textContent='⏸'; audio.onpause=()=>play.textContent='▶';
+  audio.onended=()=>load((cur+1)%tracks.length,true);
+}
+function load(i,autoplay){
+  cur=i; const t=tracks[i]; audio.src='audio/'+t.file;
+  pt.innerHTML='<b>♪ '+esc(t.title)+'</b>'+(t.artist?' · '+esc(t.artist):'');
+  if(autoplay) audio.play().catch(()=>{});
+}
+init();
+</script>
+</body>
+</html>

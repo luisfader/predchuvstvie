@@ -1,13 +1,23 @@
 {
  "tracks": [
   {
+   "file": "ty-moya-krepost.mp3",
+   "title": "Ты — моя крепость",
+   "artist": "Luis Fader",
+   "scene": "Песня Оксаны",
+   "song": true,
+   "chapters": []
+  },
+  {
    "file": "01-v-pustyne.mp3",
    "title": "В пустыне",
    "artist": "Luis Fader",
    "chapters": [
     "01.md"
    ],
-   "scene": "Неожиданные гости"
+   "scene": "Неожиданные гости",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "02-prostye-smertnye.mp3",
@@ -16,7 +26,9 @@
    "chapters": [
     "02.md"
    ],
-   "scene": "Стальные ангелы и бумажные перемирия"
+   "scene": "Стальные ангелы и бумажные перемирия",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "03-my-vernyomsya.mp3",
@@ -26,7 +38,9 @@
     "03.md",
     "09.md"
    ],
-   "scene": "Возвращение"
+   "scene": "Возвращение",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "04-obeshchanie-lyubvi.mp3",
@@ -36,7 +50,9 @@
     "04.md",
     "07.md"
    ],
-   "scene": "Бункер забытых писем"
+   "scene": "Бункер забытых писем",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "05-oblaka-na-gorizonte.mp3",
@@ -46,7 +62,9 @@
     "05.md",
     "08.md"
    ],
-   "scene": "Ультиматум с небес"
+   "scene": "Ультиматум с небес",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "06-spravedlivye.mp3",
@@ -56,7 +74,9 @@
     "06.md",
     "15.md"
    ],
-   "scene": "Союз и Сила"
+   "scene": "Союз и Сила",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "07b-romanticheskij-haos-oksana.mp3",
@@ -65,7 +85,9 @@
    "chapters": [
     "10.md"
    ],
-   "scene": "Игры власти и крови"
+   "scene": "Игры власти и крови",
+   "part": "2-2",
+   "song": true
   },
   {
    "file": "07-romanticheskij-haos.mp3",
@@ -74,7 +96,9 @@
    "chapters": [
     "11.md"
    ],
-   "scene": "Игры власти и крови"
+   "scene": "Игры власти и крови",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "08-divino-encanto.mp3",
@@ -84,7 +108,9 @@
     "12.md",
     "13.md"
    ],
-   "scene": "Лучи страсти"
+   "scene": "Лучи страсти",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "09-almas-rebeldes.mp3",
@@ -97,7 +123,9 @@
     "18.md",
     "19.md"
    ],
-   "scene": "Мощные удары"
+   "scene": "Мощные удары",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "10-motivacion-38.mp3",
@@ -109,7 +137,9 @@
     "22.md",
     "23.md"
    ],
-   "scene": "Голос скрипки и рёв стали"
+   "scene": "Голос скрипки и рёв стали",
+   "part": "2-2",
+   "song": false
   },
   {
    "file": "11-empezar-de-nuevo.mp3",
@@ -120,7 +150,23 @@
     "25.md",
     "26.md"
    ],
-   "scene": "Последний Совет"
+   "scene": "Последний Совет",
+   "part": "2-2",
+   "song": false
+  },
+  {
+   "file": "strasti.mp3",
+   "title": "Страсти",
+   "artist": "Luis Fader",
+   "song": false,
+   "chapters": []
+  },
+  {
+   "file": "strasti-version-de-combate.mp3",
+   "title": "Страсти (Versión de combate)",
+   "artist": "Luis Fader",
+   "song": false,
+   "chapters": []
   }
  ]
 }
